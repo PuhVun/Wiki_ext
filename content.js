@@ -1,7 +1,7 @@
 
 function injectStyles() {
   if (document.getElementById('wiki-extension-styles')) return;
-  if (!document.head) return; // Safety check
+  if (!document.head) return; 
   
   const style = document.createElement('style');
   style.id = 'wiki-extension-styles';
