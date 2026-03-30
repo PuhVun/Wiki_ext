@@ -1,7 +1,7 @@
-// Wikipedia API endpoint
+
 const WIKI_API = 'https://en.wikipedia.org/api/rest_v1/page/summary/';
 
-// Listen for messages from content script
+
 chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
   if (request.action === 'getWikiSummary') {
     fetchWikiSummary(request.query)
@@ -13,14 +13,13 @@ chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
         sendResponse({ success: false, error: error.message });
       });
     
-    // Return true to indicate we'll send response asynchronously
+  
     return true;
   }
 });
 
 async function fetchWikiSummary(query) {
   try {
-    // Encode the query for the URL
     const encodedQuery = encodeURIComponent(query);
     const response = await fetch(`${WIKI_API}${encodedQuery}`);
     
@@ -29,8 +28,7 @@ async function fetchWikiSummary(query) {
     }
     
     const data = await response.json();
-    
-    // Extract relevant information
+   
     return {
       title: data.title,
       extract: data.extract || 'No summary available',
